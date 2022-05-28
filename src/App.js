@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import FoodMania from './Components/FoodMania/FoodMania';
+import AllFriends from './Components/AllFriends/AllFriends';
+import NotFound from './Components/NotFound/NotFound';
+import SingleFriend from './Components/SingleFriend/SingleFriend';
+import Nav from './Components/Nav/Nav';
+import Footer from './Components/Footer/Footer';
+import FoodDetails from './Components/FoodDetails/FoodDetails';
+// import NotFound from './Components/NotFound/NotFound';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+          <Nav/>
+          <Routes>
+          <Route path="/home" element={<FoodMania />} />
+            <Route path="/foodMania" element={<FoodMania />} />
+            <Route path="/food/:foodID" element={<FoodDetails />} />
+            <Route path="/allfriends" element={<AllFriends />} />
+            <Route path="/friend/:friendID" element={<SingleFriend />} />
+            <Route exact path="/" element={<FoodMania />} />
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+          <Footer/>
+      </BrowserRouter>
   );
 }
 
